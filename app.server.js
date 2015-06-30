@@ -81,8 +81,7 @@ function makeRepl ( app ) {
     return W.promise( function ( resolve, reject ) {
         if ( app.isLocal ) {
             setTimeout( function () {
-                var r = repl
-                        .start({
+                var r = repl.start({
                             prompt: "REPL> ",
                             input: process.stdin,
                             output: process.stdout
