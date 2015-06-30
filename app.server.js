@@ -28,9 +28,10 @@ var initWebApp = W.composePromisers( makeExpressApp,
                                      makeServer,
                                      makeReporter( 'OK', 'Server running.' ) );
 
-initWebApp( makeWebApp() ).success( function ( app ) {
-    report( 'OK', 'Listening on port: ' + app.port );
-});
+initWebApp( makeWebApp() )
+    .success( function ( app ) {
+        report( 'OK', 'Listening on port: ' + app.port );
+    });
 
 // Promisers
 // =========
