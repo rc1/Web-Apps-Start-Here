@@ -2,6 +2,7 @@
 
 // WebApp
 // ======
+// An express server using jade, static files and a repl
 
 // Modules
 // =======
@@ -26,6 +27,7 @@ function makeWebApp () {
 
 var initWebApp = W.composePromisers( makeExpressApp,
                                      makeServer,
+                                     makeRepl,
                                      makeReporter( 'OK', 'Server running.' ) );
 
 initWebApp( makeWebApp() )
@@ -107,6 +109,7 @@ function makeJadeData ( app ) {
 
 // Reporting
 // ---------
+
 function report( status, str ) {
     console.log( '[', status, ']', W.rest( W.toArray( arguments ) ).join( ' ' ) );
 }
