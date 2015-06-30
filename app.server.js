@@ -58,6 +58,7 @@ function makeExpressApp ( app ) {
 
         // Routes
         // ------
+        
         // ### Home
         app.expressApp.get( '/', ( req, res ) => res.render( 'homepage', makeJadeData( app ) ) );
 
