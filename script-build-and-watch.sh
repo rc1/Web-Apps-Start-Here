@@ -9,6 +9,6 @@ elif [[ $OSTYPE == "linux-gnueabihf" ]]; then
     echo "System: Raspberry Pi 2"
 elif [ "$(uname)" == "Linux" ]; then
     echo "System: Linux"
-fie
+fi
 
 gulp && gulp watch
