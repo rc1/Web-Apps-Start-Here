@@ -32,7 +32,7 @@ var initWebApp = W.composePromisers( makeExpressApp,
 
 initWebApp( makeWebApp() )
     .success( function ( app ) {
-        report( 'OK', 'Listening on port: ' + app.port );
+        report( 'OK', 'Listening on port:', app.port );
     });
 
 // Promisers
@@ -47,7 +47,7 @@ function makeExpressApp ( app ) {
         // ----
         app.expressApp.set( 'view engine', 'jade' );
         app.expressApp.set( 'views', path.join( __dirname, 'views' ) );
-        app.expressApp.locals.pretty = true;
+        if ( app.IS_LOCAL ) { app.expressApp.locals.pretty = true; }
 
         // Middleware
         // ----------
@@ -63,6 +63,7 @@ function makeExpressApp ( app ) {
         
         // ### Home
         app.expressApp.get( '/', ( req, res ) => res.render( 'homepage', makeJadeData( app ) ) );
+        
 
         // ### W.js Clientside
         app.expressApp.get( '/W.min.js', W.jsMinMiddleware() );
