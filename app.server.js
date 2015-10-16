@@ -28,14 +28,14 @@ function makeWebApp () {
 var initWebApp = W.composePromisers( makeExpressApp,
                                      makeServer,
                                      makeRepl,
-                                     makeReporter( 'OK', 'Server running.' ) );
+                                     W.makeReporter( 'OK', 'Server running.' ) );
 
 initWebApp( makeWebApp() )
     .success( function ( app ) {
-        report( 'OK', 'Listening on port:', app.port );
+        W.report( 'OK', 'Listening on port:', app.port );
     })
     .error( function ( err ) {
-        report( 'Error', 'Failed to create app' );
+        W.report( 'Error', 'Failed to create app' );
         throw err;
     });
 
@@ -109,23 +109,5 @@ function makeRepl ( app ) {
 function makeJadeData ( app ) {
     return {
         isLocal: app.isLocal
-    };
-}
-
-// Reporting
-// ---------
-
-function report( status, str ) {
-    console.log( '[', status, ']', W.rest( W.toArray( arguments ) ).join( ' ' ) );
-}
-
-function makeReporter( status, str ) {
-    var reportArgs = arguments;
-    return function () {
-        report.apply( this, reportArgs );
-        var calleeArgs = arguments;
-        return W.promise( function ( resolve, reject ) {
-            resolve.apply( this, calleeArgs );
-        });
     };
 }
