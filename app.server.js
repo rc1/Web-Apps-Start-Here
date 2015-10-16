@@ -33,6 +33,10 @@ var initWebApp = W.composePromisers( makeExpressApp,
 initWebApp( makeWebApp() )
     .success( function ( app ) {
         report( 'OK', 'Listening on port:', app.port );
+    })
+    .error( function ( err ) {
+        report( 'Error', 'Failed to create app' );
+        throw err;
     });
 
 // Promisers
