@@ -67,7 +67,7 @@ gulp.task( 'js-libs', function () {
 });
 
 gulp.task( 'copy', function () {
-    gulp.src( [ './assets/copy/**/*' ] )
+    gulp.src( [ './assets/copy/**/*', './assets/copy/**/*.psd', './assets/copy/**/*.ai', './assets/copy/**/*.afdesign' ] )
         .pipe(gulp.dest( './public/' ));
 });
 
